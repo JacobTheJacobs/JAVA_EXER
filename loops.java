@@ -1,3 +1,132 @@
+א. כתבו תכנית שקולטת תרגיל חיבור או חיסור של שני מספרים שלמים ומדפיסה את פתרון התרגיל.
+המספרים יקלטו תו אחרי תו. בסוף התרגיל יופיע סימן =.
+ב. הרחב את התכנית שכתבת בסעיף הקודם כדי שהיא תקלוט תרגיל ארוך שמכיל פעולות חיבור וחיסור
+בלבד.
+	
+public static void main(String[] args)
+	{
+		
+		
+	 System.out.println("enter whole number one by one enter enter + when done ");
+     Scanner input = new Scanner(System.in); //just copy-and paste this line, you dont have to understand it yet.
+ 	int func=0,count=0,firstNum=0,secondNum=0,number;
+ 	boolean finneshed =true,plusSign=false;
+ 	char charNumber ;
+
+
+         while(finneshed)
+         {
+
+        		charNumber = input.next().charAt(0);
+        		
+        		//check if correct input 
+        		if(charNumber<='9' && charNumber>='0') {
+        			//change it to int
+            		number=charNumber - '0';
+            		
+            		if(number==0) {
+            			//func+=Math.pow(10, count);//10
+            		}else {
+            			func+=number*Math.pow(10, count);//2
+            		}
+            		count++;
+        		}
+
+        		
+        		//checks if plus char was insert
+        		if(charNumber=='+') {
+        			plusSign=true;
+        		//reverse the input
+        			while (func!=0)
+        			{
+        				//getting wach digit individually
+        				 int leftNumber=func % 10;
+        				//multiply each digit by its place like 0 then 10 or 100
+        	
+        				 firstNum = firstNum * 10 + leftNumber;
+        				//divede each digit by its place like 0 then 10 or 100
+        				 func /= 10;
+        				 
+        				 count=0;
+        				 
+        			}
+        			
+        
+        			System.out.println("enter second whole number one by one enter enter = when done ");
+        		}
+        		
+        		//checks if minus char was insert
+        		if(charNumber=='-') {
+        			plusSign=false;
+        			//reverse the input
+        			while (func!=0)
+        			{
+        				//getting wach digit individually
+        				 int leftNumber=func % 10;
+        				//multiply each digit by its place like 0 then 10 or 100
+        				 firstNum = firstNum * 10 + leftNumber;
+        				//divede each digit by its place like 0 then 10 or 100
+        				 func /= 10;
+        				 
+        				 count=0;
+        		         
+        			}
+        			
+        
+        			
+        		}
+        		//end the program with = sign and print result
+        		if(charNumber=='=') {
+            		
+        			while (func!=0)
+        			{
+        				//getting wach digit individually
+        				 int leftNumber=func % 10;
+        				//multiply each digit by its place like 0 then 10 or 100
+        	
+        				 secondNum = secondNum * 10 + leftNumber;
+        				//divede each digit by its place like 0 then 10 or 100
+        				 func /= 10;
+        		         
+        			}
+        			
+        				//print based on the sign that was entered
+        				if(plusSign) {
+        					System.out.println(firstNum+" + "+secondNum + " = " +(firstNum+secondNum));
+        				}else {
+        					System.out.println(firstNum+" - "+secondNum + " = " +(firstNum-secondNum));
+        				}
+        				
+        				finneshed=false;
+        		}
+            	
+         }
+
+	}
+}
+
+
+/*
+ * Output
+-----------------------------
+
+enter whole number one by one enter enter + when done 
+1
+0
+0
+0
+2
+6
++
+enter second whole number one by one enter enter = when done 
+1
+4
+=
+100026 + 14 = 100040
+
+*
+*/	
+
 כתבו תכנית אשר קולטת מספר לא ידוע של סדרות של מספרים שלמים. כל סדרה מסתיימת באפס וגם
 רצף הסדרות מסתיים באפס.
 לדוגמא:
