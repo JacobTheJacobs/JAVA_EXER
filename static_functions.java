@@ -130,3 +130,163 @@ enter the 3 number
 8
 
 */
+שאלה 2:
+א. כתבו פונקציה (num int(digits_sum שמחזירה סכום הספרות של המספר num.
+ב. כתבו פונקציה ראשית אשר קולטת סדרה של מספרים עד הקשת מספר לא חיובי. ליד כל מספר
+נקלט יודפס סכום הספרות שלו. הסיום הקלט יש להדפיס את המספר בעל סכום ספרות מינימלי.
+			 
+public class Targil02 {
+	
+	
+
+	public static int digits_sum(int num){ 
+		
+		int sum =0;
+		while(num>0) {
+			sum+=num%10;
+			num=num/10;
+		}
+		return sum;
+	}
+
+
+	public static void main(String []args){
+		
+		Scanner input = new Scanner(System.in);
+		//init var
+		int num=22222;
+		boolean programRunning=true;
+		
+		
+		//System.out.println(digits_sum(num));
+		
+		System.out.println("input a number negative or zero will end the program");
+		while(programRunning) {
+			
+			int number =input.nextInt();
+			
+			if(number<=0) {
+				programRunning=false;
+			}else {
+				System.out.println("input another number");
+				System.out.println(digits_sum(number));
+			}
+			
+		}
+		System.out.println("########################");
+		System.out.println("END");
+	}
+
+}
+		
+/*
+ * 
+ * 
+
+input a number negative or zero will end the program
+33
+input another number
+6
+66
+input another number
+12
+12
+input another number
+3
+0
+########################
+END
+
+*/
+
+			 
+			 שאלה 3:
+א. כתבו פונקציה שמקבלת מספר ומחזירה true אם מספר ראשוני ו- false אחרת.
+ב. מספר מיוחד הוא מספר , שסכום כל המספרים הראשוניים שלפניו כפול מהמספר עצמו.
+כתבו פונקציה שמקבלת מספר שלם ומחזירה 1 אם הוא מיוחד ו- 0 אחרת.
+ג. כתבו תוכנית הקולטת 100 מספרים ומדפיסה הודעה לגבי כל אחד ואחד האם הוא מיוחד או לא.
+			 
+			 
+public class Targil03 {
+	
+	//.1
+	public static boolean checkPrime(int num){ 
+		  boolean flag = true;
+		  int index =2;
+		    while( num /2 >= index) {
+	
+		      // condition for nonprime number
+		      if (num % index == 0) {
+		    	  
+		        flag = false;
+		        break;
+		      }
+		      index++;
+		    }
+		    return flag;
+	}
+	//.2
+	public static int checkSpecial(int num){ 
+		  boolean flag;
+		  int result=0;
+		  int index =2;
+		  int sum=0;
+		    while( num >= index) {
+		      // condition for nonprime number
+		    	flag=checkPrime(index);
+		    	if(flag) {
+		    		sum+=index;
+		    	}
+		      index++; 
+		    }
+		    if(sum>num*2) {
+		    	result=1;
+		    }
+		    return result;
+	}
+
+
+	public static void main(String []args){
+		
+		Scanner input = new Scanner(System.in);
+		
+		int num =7;
+		int number;
+		//System.out.println(checkSpecial(num));
+		//System.out.println(checkPrime(num));
+		System.out.println(checkSpecial(num));
+		//.3
+		for(int i=1;i<100;i++) {
+			number=input.nextInt();
+			if(checkSpecial(number)==1) {
+				System.out.println("the number is special");
+			}else {
+				System.out.println("the number is not special");
+			}
+		}
+		
+	}
+
+}
+		
+/*
+ * 
+ * 
+
+input a number negative or zero will end the program
+33
+input another number
+6
+66
+input another number
+12
+12
+input another number
+3
+0
+########################
+END
+
+*/
+
+			 
