@@ -1,188 +1,313 @@
-package samples;
+package tragil2;
 
-import java.util.Random;
 import java.util.Scanner;
 
-public class Patterns{
+public class demo1 {
 	
 	
-	//  1
-	public static void doublePyramidPattern(int n) 
-    {  
-		int i, j, space = 1;
-	
-		space = n - 1;
-		for (j = 1; j<= n; j++)
-		{
-		for (i = 1; i<= space; i++)
-		{
-		System.out.print(" ");
-		}
-		space--;
-		for (i = 1; i <= 2 * j - 1; i++)
-		{
-		System.out.print("*");
-		}
-		System.out.println("");
-		}
-		space = 1;
-		for (j = 1; j<= n - 1; j++)
-		{
-		for (i = 1; i<= space; i++)
-		{
-		System.out.print(" ");
-		}
-		space++;
-		for (i = 1; i<= 2 * (n - j) - 1; i++)
-		{
-		System.out.print("*");
-		}
-		System.out.println("");
-		}
-    } 
-	
-	//  2
-	public static void pyramidPattern(int n) 
-    {  
-        for (int i=0; i<n; i++) //outer loop for number of rows(n)
-        { 
-        	for (int j=n-i; j>1; j--) //inner loop for spaces
-            { 
-                System.out.print(" "); //print space
-            }  
-        		for (int j=0; j<=i; j++ ) //inner loop for number of columns
-            { 
-                System.out.print("* "); //print star
-            } 
-  
-            System.out.println(); //ending line after each row
-        } 
-    } 
-	
-	
-	
-	//  3
-	public static void halfPyramidNumbers(int n) 
-    {  
-		 for (int i= 0; i<= n; i++)
-	        {
-	            for (int j=1; j<=n-i; j++)
-	            {
-	                System.out.print(" ");
-	            }
-	            for (int k=0;k<=i;k++)
-	            {
-	                System.out.print(k*2);
-	            } 
-	                System.out.println("");
-	        }
-		        
-	    
-    } 
-	//  4
-	
-	public static void halfPyramidNumbersDown(int n) 
-    {  
-	
-		        
-	    
-    } 
-	
-	
-	//  5
-	public static void doublePyramidPatternDown(int n) 
-    {  
-		for (int i= 0; i<= n-1 ; i++)
-        {
-            for (int j=0; j <i; j++)
-            {
-                System.out.print(" ");
-            }
-            for (int k=i; k<=n-1; k++) 
-            {
-            System.out.print("*" + " ");
-            } 
-            System.out.println("");
-            } 
-            for (int i= n-1; i>= 0; i--)
-        {
-            for (int j=0; j< i ;j++)
-            {
-                System.out.print(" ");
-            }
-            for (int k=i; k<=n-1; k++)
-            {
-                System.out.print("*" + " ");
-            }
-            System.out.println("");
-        }
-    }
-	
-	//  6
-	public static void PyramidNumbers(int n) 
-    {  
-		for (int i = 0; i < n; i++) {
-            int number = 1;
-            System.out.printf("%" + (n - i) * 2 + "s", "");
-            for (int j = 0; j <= i; j++) {
-                System.out.printf("%4d", number);
-                number = number * (i - j) / (j + 1);
-            }
-            System.out.println();
-        }
-  
-    }
-	//  7
-	public static void HalfPyramidNumbers(int n) 
-    {  
-	
-  
-    }
-	
-	//8
-	public static void halfPyramidNumbersDownOrder(int n) 
-    {  
-		for (int i= n; i>= 1; i--)
-	    {
-	    for (int j=n; j>i;j--)
-	    {
-	    System.out.print(" ");
-	    }
-	    for (int k=1;k<=i;k++)
-	    {
-	    System.out.print(k);
-	    }
-	    System.out.println("");
-	    }
-	  
-    }
-
-	public static void main(String []args){
+	//-------------------------------------   1
+	public static void diamond(int n) {
+		//draw triangle
+		//draw number of rows go down each row
+		for(int row =0; row <= n ; row++) {
+			
+			System.out.println();
+			//draw number of spaces increase each row
+			for(int space = n-row; space!=0; space--) {
+				
+				System.out.print(" ");
+			}
+			//draw number of stars increase each row
+			for(int stars =0 ; stars <= row*2; stars++) {
+				System.out.print("*");	
+			}
 		
-		  int n = 5; 
-		  
-		  //doublePyramidPattern(n);   //--OK
-		  
-	      //pyramidPattern(n);   //--OK 
-		  
-		  //halfPyramidNumbers(n);  //--FAIL
-		  
-		  //halfPyramidNumbersDown(n); //--FAIL
-		  
-		  //doublePyramidPatternDown(n);   //--OK
-		  
-		  //PyramidNumbers(n); //--FAIL
-		  
-		  //HalfPyramidNumbers(n); //--FAIL
-		  
-		  //halfPyramidNumbersDownOrder(n);  //--OK
-	      
+		}
+		////draw triangle upside down
+		for(int row =n-1; row >= 0 ; row--) {
+			System.out.println();
+			//draw number of spaces deacrease each row
+			for(int space = n-row; space!=0; space--) {
+				
+				System.out.print(" ");
+			}
+			//draw number of stars increase each row
+			for(int stars =0 ; stars <= row*2; stars++) {
+				System.out.print("*");	
+			}
+		}
 		
 	}
-
-}
+	
+	//-------------------------------------   2
+	public static void triangle(int n) {
+		//draw triangle
+		//draw number of rows go down each row
+		for(int row =0; row <= n ; row++) {
+			
+			System.out.println();
+			//draw number of spaces deacrease each row
+			for(int space = n-row; space!=0; space--) {
+				
+				System.out.print(" ");
+			}
+			//draw number of stars increase each row
+			for(int stars =0 ; stars <= row*2; stars++) {
+				System.out.print("*");	
+			}
 		
+		}
+
+		
+	}
+	
+	
+	//-------------------------------------   3
+	public static void stairs(int n) {
+		//draw the rows each loop go one down
+		for(int row =1; row <= n ; row++) {
+			System.out.println();
+			
+			//draw the spaces each line decrease by one
+			for(int space = n-row; space!=0; space--) {
+				System.out.print("    ");
+			}
+			//draw the numbers each loop draw increasing in numbers
+				for(int number =1; row>=number; number++) {
+					System.out.print("   "+number*2);
+				}
+			}	
+	}
+	
+	//-------------------------------------   4
+	public static void upsideStairs(int n) {
+		//draw the rows each loop go one down
+		for(int row =1; row <= n ; row++) {
+			System.out.println();
+			
+			//draw the spaces each line decrease by one
+			for(int space = 1; space<row; space++) {
+				System.out.print("  ");
+			}
+			//draw the numbers each loop draw increasing in numbers
+				for(int number = 0; n-row>=number; number++) {
+					System.out.print(" "+row);
+				}
+			}	
+	}
+	
+	//-------------------------------------   5
+	public static void oppositeDiamond(int n) {
+		////draw triangle upside down
+		//draw rows each row decrease by one
+		for(int row =n-1; row >= 0 ; row--) {
+			System.out.println();
+			//draw space each row decrease by one
+			for(int space = n-row; space!=0; space--) {
+				System.out.print(" ");
+				}
+				//draw the number of stars
+				for(int stars =0 ; stars <= row*2; stars++) {
+					System.out.print("*");	
+				}
+			}
+		/////draw triangle
+		for(int row =1; row < n ; row++) {	
+			System.out.println();
+			//draw space each row increase by one
+			for(int space = n-row; space!=0; space--) {	
+				System.out.print(" ");
+				}
+				//draw the number of stars
+				for(int stars =0 ; stars <= row*2; stars++) {
+					System.out.print("*");	
+				}
+			}	
+		}
+	
+	//-------------------------------------   6
+	public static void triangleNumbers(int n) {
+		//draw row each loop
+		for(int row =1; row <= n ; row++) {
+			System.out.println();
+			//draw space decrease by 1 by row
+			for(int space = n-row; space!=0; space--) {	
+				System.out.print("  ");
+			}
+			for(int number =1 ; number < row*2; number++) {
+				//check if we got the same numbers as number of row if yes decrease numbers
+				if(number>row) {
+					System.out.print(" "+row * (row - number + row) / row);
+				}else {
+					System.out.print(" "+number);
+				}
+			}
+		}	
+	}
+	
+	//-------------------------------------   7
+	public static void stairsFibonacci(int n) {
+		//draw the rows each loop go one down
+		for(int row =1; row <= n ; row++) {
+			System.out.println();
+			
+			//draw the spaces each line decrease by one
+			for(int space = n-row; space!=0; space--) {
+				System.out.print("    ");
+			}
+			//draw the numbers each loop draw increasing in numbers
+				for(int number =1; row>=number; number++) {
+					if(number==1) {
+						System.out.print(number);
+					}else {
+						//if statement just for better looking output
+						if(number*row-row+1>=10) {
+							System.out.print("  "+(number*row-row+1)+"");	
+						}else {
+							System.out.print("   "+(number*row-row+1)+"");
+						}
+					
+					}
+					
+				}
+			}	
+	}
+	
+	//-------------------------------------   8
+	public static void upsideStairsNumbers(int n) {
+		//draw the rows each loop go one down
+		for(int row =1; row <= n ; row++) {
+			System.out.println();
+			
+			//draw the spaces each line decrease by one
+			for(int space = 1; space<row; space++) {
+				System.out.print("  ");
+			}
+			//draw the numbers each loop draw increasing in numbers
+				for(int number = 1; n+1-row>=number; number++) {
+					System.out.print(" "+number);
+				}
+			}	
+	}
+
+	
+	public static void main(String[]args) {
+		//1.
+		diamond(5);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		//2.
+		triangle(5);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		//3.
+		stairs(5);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		//4.
+		upsideStairs(5);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		//5.
+		oppositeDiamond(5);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		//6.
+		triangleNumbers(5);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		//7.
+		stairsFibonacci(5);
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		//8.
+		upsideStairsNumbers(5);
+	}
+	
+}
+
+//OUTPUT
+//----------------------
+/*
+ * 
+ * 
+     *
+    ***
+   *****
+  *******
+ *********
+***********
+ *********
+  *******
+   *****
+    ***
+     *
 
 
 
+     *
+    ***
+   *****
+  *******
+ *********
+***********
 
+
+
+                   2
+               2   4
+           2   4   6
+       2   4   6   8
+   2   4   6   8   10
+
+
+
+ 1 1 1 1 1
+   2 2 2 2
+     3 3 3
+       4 4
+         5
+
+
+
+ *********
+  *******
+   *****
+    ***
+     *
+    ***
+   *****
+  *******
+ *********
+
+
+
+         1
+       1 2 1
+     1 2 3 2 1
+   1 2 3 4 3 2 1
+ 1 2 3 4 5 4 3 2 1
+
+
+
+                1
+            1   3
+        1   4   7
+    1   5   9  13
+1   6  11  16  21
+
+
+
+ 1 2 3 4 5
+   1 2 3 4
+     1 2 3
+       1 2
+         1
+ * */
