@@ -1,0 +1,181 @@
+package samples;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		try {
+			Class.forName("org.sqlite.JDBC");
+			System.out.println("Load driver success");
+			
+			
+			
+			Connection connection = DriverManager.getConnection("jdbc:sqlite:C:\\java\\samples\\src\\samples\\test01.db");
+			
+			
+			
+			//Query insert to table product with 4 value
+			String query = "INSERT INTO rhyme(id,name,two_last,three_last) VALUES(?,?,?,?)";
+			//Create prepare statement 
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+		
+			//Get list product from file text
+			//ArrayList<Rhyme> listProduct = getListProductFromTextFile();
+			//Insert list to db
+			
+			 String path = "C:\\java\\samples\\src\\samples\\dictionary.txt";
+			 
+			  FileInputStream inputStream = null;
+		        Scanner sc = null;
+		        try {
+		        	
+		            inputStream = new FileInputStream(path);
+		            sc = new Scanner(inputStream, "Cp1255");
+		        	ArrayList<Rhyme> listResult = new ArrayList<Rhyme>();
+		            int c=1;
+		            while (sc.hasNextLine()) {
+		                String line = sc.nextLine();
+		                //writer.println(line);
+		                
+		                if(line.contains("b")) {
+		    
+		                	String s= line.replaceAll("/b", " ");
+		                	String ss = line.length() > 2 ? line.substring(line.length() - 4,line.length() - 2) : line;
+		                  	String sss = line.length() > 4 ? line.substring(line.length() - 5,line.length() - 2) : line;
+		                	Rhyme r = new Rhyme(c,s,ss,sss);
+		                	System.out.println(s);
+		                	System.out.println(ss);
+		                	System.out.println(sss);
+		                	preparedStatement.setInt(1, r.get_id());
+		    				preparedStatement.setString(2, r.get_name());
+		    				preparedStatement.setString(3, r.get_twoLast());
+		    				preparedStatement.setString(4, r.get_threeLast());
+		    				
+		                }else if(line.contains("a")) {
+		                	String s= line.replaceAll("/a", " ");
+		                	String ss = line.length() > 2 ? line.substring(line.length() - 4,line.length() - 2) : line;
+		                  	String sss = line.length() > 4 ? line.substring(line.length() - 5,line.length() - 2) : line;
+		                	Rhyme r = new Rhyme(c,s,ss,sss);
+		                   	System.out.println(s);
+		                	System.out.println(ss);
+		                	System.out.println(sss);
+		                	preparedStatement.setInt(1, r.get_id());
+		    				preparedStatement.setString(2, r.get_name());
+		    				preparedStatement.setString(3, r.get_twoLast());
+		    				preparedStatement.setString(4, r.get_threeLast());
+		         
+		                }
+		                else if(line.contains("c")) {
+
+		                	String s= line.replaceAll("/c", " ");
+		                	String ss = line.length() > 2 ? line.substring(line.length() - 4,line.length() - 2) : line;
+		                  	String sss = line.length() > 4 ? line.substring(line.length() - 5,line.length() - 2) : line;
+		                	Rhyme r = new Rhyme(c,s,ss,sss);
+		                	System.out.println(s);
+		                	System.out.println(ss);
+		                	System.out.println(sss);
+		                	preparedStatement.setInt(1, r.get_id());
+		    				preparedStatement.setString(2, r.get_name());
+		    				preparedStatement.setString(3, r.get_twoLast());
+		    				preparedStatement.setString(4, r.get_threeLast());
+		    				
+		    				
+		    				//must have else block unless would get values not boud 
+		                }else {
+		                    if(line.contains("b")) {
+		            		    
+			                	String s= line.replaceAll("/b", " ");
+			                	String ss = line.length() > 2 ? line.substring(line.length() - 4,line.length() - 2) : line;
+			                  	String sss = line.length() > 3 ? line.substring(line.length() - 5,line.length() - 2) : line;
+			                	Rhyme r = new Rhyme(c,s,ss,sss);
+			                	System.out.println(s);
+			                	System.out.println(ss);
+			                	System.out.println(sss);
+			                	preparedStatement.setInt(1, r.get_id());
+			    				preparedStatement.setString(2, r.get_name());
+			    				preparedStatement.setString(3, r.get_twoLast());
+			    				preparedStatement.setString(4, r.get_threeLast());
+			    				
+			                }else if(line.contains("a")) {
+			                	String s= line.replaceAll("/a", " ");
+			                	String ss = line.length() > 2 ? line.substring(line.length() - 4,line.length() - 2) : line;
+			                  	String sss = line.length() > 3 ? line.substring(line.length() - 5,line.length() - 2) : line;
+			                	Rhyme r = new Rhyme(c,s,ss,sss);
+			                   	System.out.println(s);
+			                	System.out.println(ss);
+			                	System.out.println(sss);
+			                	preparedStatement.setInt(1, r.get_id());
+			    				preparedStatement.setString(2, r.get_name());
+			    				preparedStatement.setString(3, r.get_twoLast());
+			    				preparedStatement.setString(4, r.get_threeLast());
+			         
+			                }
+			                else if(line.contains("c")) {
+
+			                	String s= line.replaceAll("/c", " ");
+			                	String ss = line.length() > 2 ? line.substring(line.length() - 4,line.length() - 2) : line;
+			                  	String sss = line.length() > 3 ? line.substring(line.length() - 5,line.length() - 2) : line;
+			                	Rhyme r = new Rhyme(c,s,ss,sss);
+			                	preparedStatement.setInt(1, r.get_id());
+			    				preparedStatement.setString(2, r.get_name());
+			    				preparedStatement.setString(3, r.get_twoLast());
+			    				preparedStatement.setString(4, r.get_threeLast());
+			                }
+			    		
+		                }
+		                c++;
+		                
+		                //String substring = line.length() > 2 ? line.substring(line.length() - 4,line.length() - 2) : line;
+		                //System.out.println(substring);
+		                //System.out.println(line);
+		                preparedStatement.executeUpdate();
+						System.out.println("Insert success record:" + (c));
+	   
+		            }
+		            // note that Scanner suppresses exceptions
+		            if (sc.ioException() != null) {
+		                throw sc.ioException();
+		            }
+		        } finally {
+		            if (inputStream != null) {
+		                inputStream.close();
+		            }
+		            if (sc != null) {
+		                sc.close();
+		            }
+		        
+		            if(connection != null){
+		                try{
+		                	connection.close();
+		                } catch(Exception e){
+		                    e.printStackTrace();
+		                }
+		           }
+		            if(preparedStatement != null){
+			               try{
+			            	   preparedStatement.close();
+			               } catch(Exception e){
+			                   e.printStackTrace();
+			               }
+			           }
+		           
+		         
+		        }
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+}
