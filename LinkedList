@@ -1,0 +1,303 @@
+תרגילים:
+1 .כתוב פונקציה המקבלת שתי רשימות מקושרות של מחרוזות ומחזירה רשימה
+מקושרת המכילה את האיברים של שתי הרשימות, כך שקודם יופיעו איברים של
+רשימה הראשונה ואחר כך של רשימה השנייה.
+א. אפשר להרוס רשימות הקיימות
+ב. אסור להרוס רשימות הקיימות
+
+2 .כתוב פונקציה המקבלת שתי רשימות מקושרות של מחרוזות ממוינות בסדר עולה
+ומחזירה רשימה מקושרת ממוינת המכילה את האיברים של שתי הרשימות.
+א. אסור להרוס רשימות הקיימות
+ב. אפשר להרוס רשימות הקיימות
+
+3 .כתוב פונקציה המקבלת שתי רשימות מקושרות ממוינות של מספרים שלמים
+ומחזירה את הערך האיבר המשותף הקטן ביותר. אם אין איברים משותפים, על
+הפעולה להחזיר null.
+
+4 .כתוב פונקציה המקבלת שתי רשימות מקושרות של מספרים שלמים ומחזירה
+רשימת החיתוך שלהם )רשימה המכילה איברים משותפים(.
+5 .כתוב פונקציה המקבלת שתי רשימות מקושרות ממוינות של מספרים שלמים
+ומחזירה רשימת החיתוך שלהם )רשימה המכילה איברים משותפים(. על רשימת
+החיתוך גם להיות ממוינת.
+6 .כתוב פונקציה המקבלת שתי רשימות מקושרות של ספרות. כל רשימה מייצגת
+מספר שלם ארוך. על הפונקציה להחזיר את רשימה מקושרת חדשה המכילה את
+סכום של שני מספרים. שים לב, איבר ראשון בכל רשימה זו ספרה הכי
+משמעותית.
+
+
+
+
+package stack;
+
+import java.util.Scanner;
+
+import unit4.collectionsLib.Node;
+import unit4.collectionsLib.Queue;
+import unit4.collectionsLib.Stack;
+
+public class main {
+	
+	
+	public static Node<Integer> build0( int n)	{
+		Node<Integer> first = null;
+		
+		for (int i =n; i>=1; i--){
+			Node<Integer> t = new Node<Integer> (i);
+			if(i%2==0) {
+				t = new Node<Integer> (i-1);
+			}
+			t.setNext(first);
+			first=t;
+		
+		}
+		return first;
+	}
+	
+	
+	public static Node<String> combine(Node<String>s1,Node<String>s2){
+		Node<String> temp1 =s1;
+		Node<String> temp2 =s2;
+		
+		Node<String> temp3 =null;
+		Node<String> last =null;
+
+		while(temp1!=null) {
+			Node<String> t = new Node<String>(temp1.getInfo());
+			
+			if(temp3==null) {
+				temp3 =last=t;
+			}else {
+				
+				last.setNext(t);
+				last=t;
+				
+			}
+			temp1=temp1.getNext();
+		}
+		
+		while(temp2!=null) {
+			Node<String> t = new Node<String>(temp2.getInfo());
+			
+			if(temp3==null) {
+				temp3 =last=t;
+			}else {
+				
+				last.setNext(t);
+				last=t;
+				
+			}
+			temp2=temp2.getNext();
+		}
+		return temp3;
+	}
+	
+	
+	public static Node<Integer> merge(Node<Integer>s1,Node<Integer>s2){
+		Node<Integer> temp1 =s1;
+		Node<Integer> temp2 =s2;
+		
+		Node<Integer> temp3 =null;
+		Node<Integer> last =null;
+		Node<Integer> t = null;
+		
+		while(temp1!=null && temp2!=null) {
+			
+			
+			if(temp1.getInfo()<temp2.getInfo()) {
+				t=new Node<Integer>(temp1.getInfo());
+				temp1 =temp1.getNext();
+			}else {
+				t=new Node<Integer>(temp2.getInfo());
+				temp2 =temp2.getNext();
+			}
+			
+			if(temp3==null) {
+				temp3=last=t;
+			}else {
+				last.setNext(t);
+				last=t;
+			}
+		}
+			
+			while(temp1!=null) {
+				t=new Node<Integer>(temp1.getInfo());
+				if(temp3==null) {
+					temp3=last=t;
+				}else {
+					last.setNext(t);
+					last=t;
+				}
+				temp1=temp1.getNext();
+			}
+			
+			while(temp2!=null) {
+				t=new Node<Integer>(temp2.getInfo());
+				if(temp3==null) {
+					temp3=last=t;
+				}else {
+					last.setNext(t);
+					last=t;
+				}
+				temp2=temp2.getNext();
+			}
+		
+			return temp3;
+		}
+		
+		
+	public static Node<Integer> findCommon(Node<Integer>s1,Node<Integer>s2){
+		Node<Integer> temp1 =s1;
+		Node<Integer> temp2 =s2;
+		
+		int min1 = temp1.getInfo();
+		int min2 = temp2.getInfo();
+		
+		temp1=temp1.getNext();
+		while(temp1!=null) {
+			
+			if(min1>temp1.getInfo()) {
+				min1=temp1.getInfo();
+			}
+			
+			temp1=temp1.getNext();
+		}
+		
+		temp2=temp2.getNext();
+		while(temp2!=null) {
+			
+			if(min2>temp2.getInfo()) {
+				min2=temp2.getInfo();
+			}
+			
+			temp2=temp2.getNext();
+		}
+		Node<Integer> res =null;
+		
+		if(min1==min2) {
+			res=new Node<Integer>(min1);
+		}
+		
+		return  res;
+	}
+	
+	public static Node<Integer> getCommon(Node<Integer> temp1,Node<Integer> temp2){
+		Node<Integer> last=null;
+		Node<Integer> temp3 =null;
+		
+		
+		while(temp1!=null) {
+			
+			Node<Integer> t = new Node<Integer>(temp1.getInfo());
+			Node<Integer> t2 = temp2;
+			
+			while(t2!=null) {
+				
+				if(t.getInfo()==t2.getInfo()) {
+					if(temp3==null) {
+						temp3=last=t;
+					}else {
+						last.setNext(t);
+						last=t;
+					}
+				}
+				t2= t2.getNext();
+			}
+			temp1= temp1.getNext();
+			
+		}
+		return temp3;
+	}
+		
+	
+	public static Node<Integer> sum(Node<Integer> temp1, Node<Integer> temp2){
+		
+		Node<Integer> t1 =temp1;
+		Node<Integer> t2 =temp2;
+		
+		
+		int counter=-1;
+		int sum=0;
+		
+		while( t1!=null ) {
+			Node<Integer> t = new Node<Integer>(temp1.getInfo());
+			counter++;
+			t1= t1.getNext();
+		}
+		
+		Node<Integer> t11 =temp1;
+		while(t11!=null) {
+			
+			sum+=t11.getInfo()*Math.pow(10,counter);
+			t11 = t11.getNext();
+			counter--;
+		}
+		
+		while( t2!=null ) {
+			Node<Integer> t = new Node<Integer>(temp2.getInfo());
+			counter++;
+			t2= t2.getNext();
+		}
+		
+		Node<Integer> t12 =temp2;
+		
+		int sum1=0;
+		while(t12!=null) {
+			System.out.println(counter);
+			sum1+=t12.getInfo()*Math.pow(10,counter);
+			t12 = t12.getNext();
+			counter--;
+		}
+		
+		sum=sum+sum1;
+		
+		Stack<Integer> t = new Stack<Integer>();
+		while(sum>0) {
+			t.push(sum%10);
+			sum=sum/10;
+			
+		}
+		
+		Node<Integer> last =null;
+		Node<Integer> temp3 =null;
+		
+		while( !t.isEmpty() ) {
+			Node<Integer> temp9 = new Node<Integer>(t.pop());
+			if(temp3==null) {
+				temp3=last=temp9;
+			}else {
+				last.setNext(temp9);
+				last=temp9;
+			}
+		}
+		
+		
+		return temp3;
+		
+	}
+	
+	
+	
+	public static void main (String[]args) {
+		Node<Integer> num0 = new Node<Integer>(1);
+		Node<Integer> num1 = new Node<Integer>(3);
+		Node<Integer> num2 = new Node<Integer>(5);
+		
+		Node<Integer> num10 = new Node<Integer>(1);
+		Node<Integer> num11 = new Node<Integer>(3);
+		Node<Integer> num12 = new Node<Integer>(6);
+		
+		num0.setNext(num1);
+		num1.setNext(num2);
+		
+		num10.setNext(num11);
+		num11.setNext(num12);
+	
+		System.out.println(sum(num0, num10));
+	}
+	
+	
+}
+
+
+
+
